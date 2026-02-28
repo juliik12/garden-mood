@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario emocional</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #fff5f8;
+  color: #5a2d45;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgba(249,184,204,0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(232,180,216,0.30) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(255,212,194,0.15) 0%, transparent 70%);
+}
+
+.main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  background: white;
+  border-bottom: 1.5px solid rgba(249,184,204,0.5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #f59bb6;
+}
+
+.nav-sectores {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-sectores a {
+  text-decoration: none;
+  color: #a0668a;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nav-sectores a:hover,
+.nav-sectores a.active {
+  color: #e8638c;
+}
+
+
+h1 {
+  text-align: center;
+  color: #e8638c;
+  margin-top: 20px;
+          font-family: 'Playfair Display', serif;
+}
+
+.calendario {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.header {
+  font-weight: bold;
+  text-align: center;
+  color: #a0668a;
+}
+
+.dia {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  min-height: 70px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.numero {
+  font-weight: bold;
+  color: #a0668a;
+}
+
+.emocion {
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+
+.boton-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 2rem;
+  border-radius: 30px;
+  background: #e8638c;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #f586a7;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-titulo">Calendario de emociones</div>
+  <ul class="nav-sectores">
+    <li><a href="/">Mi día</a></li>
+    <li><a href="/jardin">Jardín</a></li>
+    <li><a class="active" href="/calendario">Calendario</a></li>
+  </ul>
+</nav>
+
+<main class="main">
+<h1>Calendario {{ mes }}/{{ anio }}</h1>
+
+<div class="calendario">
+  <div class="header">L</div>
+  <div class="header">M</div>
+  <div class="header">X</div>
+  <div class="header">J</div>
+  <div class="header">V</div>
+  <div class="header">S</div>
+  <div class="header">D</div>
+
+  {% for semana in calendario %}
+    {% for dia in semana %}
+      {% if dia == 0 %}
+        <div></div>
+      {% else %}
+        <div class="dia">
+          <div class="numero">{{ dia }}</div>
+          <div class="emocion">
+            {% if dia in emociones %}
+              {{ emociones[dia] }}
+            {% else %}
+              🌱
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+</div>
+
+<div class="boton-container">
+  <a href="/" class="btn">Volver</a>
+</div>
+</main>
+
+</body>
+</html>

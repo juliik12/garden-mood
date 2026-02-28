@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardin emotivo a</title>
+    <link rel="stylesheet" href="/styles/style.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #fff5f8;
+  color: #5a2d45;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgba(249,184,204,0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(232,180,216,0.30) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(255,212,194,0.15) 0%, transparent 70%);
+}
+    .main {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  background: white;
+  border-bottom: 1.5px solid rgba(249, 184, 204, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.nav-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #f59bb6;
+  letter-spacing: 0.02em;
+}
+
+.nav-sectores {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-sectores a {
+  text-decoration: none;
+  color: #a0668a;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-sectores a:hover {
+  color: #e8638c;
+}
+    .titulo{
+        
+        text-align: center;
+        
+        font-size: 20px;
+
+    }
+    .titulo h1{
+        font-family: 'Playfair Display', serif;
+        color: #e8638c;
+    }
+    .titulo p{
+        font-size: 18px; 
+        color: #a0668a;
+    }
+    .notas {
+        background: rgb(247, 242, 230);
+        border-radius: 20px;
+        padding: 1.8rem;
+        box-shadow: 0 2px 11px  rgba(214,61,114,0.15);
+        margin-bottom: 1.5rem;
+    }
+    .notas label{
+        display: block;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: #a0668a ;
+        margin-bottom: 0.8rem;
+    }
+    .notas textarea{
+        width: 100%;
+        border: 1.5px solid #ffe8f0;
+        border-radius: 12px;
+        padding: 1rem;
+
+        font-family: 'Quicksand', sans-serif;
+        font-size: 0.95rem;
+        color: #5a2d45;
+        resize: vertical;
+        min-height: 90px;
+        background: #fff5f8;
+        transition: border-color 0.2s;
+        outline: none;
+
+    }
+    .emociones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.emocion {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(214,61,114,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.emocion:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(214,61,114,0.25);
+}
+
+.emocion input {
+  display: none;
+}
+
+.emocion span {
+  font-size: 2rem;
+}
+
+.emocion p {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: #a0668a;
+  font-weight: bold;
+}
+
+.emocion input:checked + span {
+  transform: scale(1.2);
+}
+
+.btn {
+  margin-top: 1rem;
+  padding: 0.7rem 2rem;
+  border-radius: 30px;
+  border: none;
+  background: #e8638c;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn:hover{
+    background-color: #f586a7;
+}
+li a.active {
+  
+  color: #e8638c;
+}
+    </style>
+</head>
+<body>
+        <nav>
+            <div class="nav-titulo">Jardin de emociones</div>
+            <ul class="nav-sectores">
+                <li><a class="active" href="/">Mi día</a></li>
+                <li><a href="/jardin">Jardin</a></li>
+                <li><a href="/calendario">Calendario</a></li>
+            </ul>
+        </nav>
+    <main class="main">
+
+        <div class="titulo">
+            <h1>¿Como te sentis hoy?</h1>
+            <p>Elige tu emocion y planta una flor en tu jardin</p>
+        </div>
+<form method="POST">
+  <div class="emociones">
+
+    <label class="emocion">
+      <input type="radio" name="mood" value="🌻" required>
+      <span>😄</span>
+      <p>Felicidad</p>
+    </label>
+
+    <label class="emocion">
+      <input type="radio" name="mood" value="tristeza">
+      <span>😢</span>
+      <p>Tristeza</p>
+    </label>
+
+    <label class="emocion">
+      <input type="radio" name="mood" value="angustia">
+      <span>😟</span>
+      <p>Angustia</p>
+    </label>
+
+    <label class="emocion">
+      <input type="radio" name="mood" value="enojo">
+      <span>😡</span>
+      <p>Enojo</p>
+    </label>
+
+    <label class="emocion">
+      <input type="radio" name="mood" value="frustracion">
+      <span>😣</span>
+      <p>Frustración</p>
+    </label>
+
+    <label class="emocion">
+      <input type="radio" name="mood" value="verguenza">
+      <span>😳</span>
+      <p>Vergüenza</p>
+    </label>
+
+    <label class="emocion">
+      <input type="radio" name="mood" value="asco">
+      <span>🤢</span>
+      <p>Asco</p>
+    </label>
+
+    <label class="emocion">
+      <input type="radio" name="mood" value="miedo">
+      <span>😨</span>
+      <p>Miedo</p>
+    </label>
+
+  </div>
+
+
+        <div class="notas">
+            <label for="nota"> Una nota para que puedas describir tu dia brevemente (opcional)</label>
+            <textarea id="nota" name="nota" maxlength="200"
+            placeholder="¿Que sucedio hoy que queres recordar?"></textarea>
+
+        </div>
+         <button type="submit" class="btn">Plantar flor</button>
+         {% if emocion %}
+            <p id="resultado">Hoy plantaste: {{ emocion }}</p>
+        {% endif %}
+        </form>
+    </main>
+</body>
+</html>
