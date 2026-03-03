@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jardín Emocional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.ico') }}">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(#cce9f7, #fefefe);
+  color: #5a2d45;
+}
+
+/* NAVBAR (NO TOCADA) */
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  background: transparent;
+  border-bottom: 1.5px solid rgba(249,184,204,0.5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #f59bb6;
+}
+
+.nav-sectores {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-sectores a {
+  text-decoration: none;
+  color: #a0668a;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nav-sectores a.active {
+  color: #e8638c;
+}
+
+/* MAIN */
+.main {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+
+    .titulo{
+        
+        text-align: center;
+        
+        font-size: 20px;
+
+    }
+    .titulo h1{
+        font-family: 'Playfair Display', serif;
+        color: #e8638c;
+    }
+    .titulo p{
+        font-size: 18px; 
+        color: #a0668a;
+    }
+
+/* JARDIN */
+.jardin {
+  background-image: url("/static/images/jardin.jpeg"); /* TU IMAGEN */
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 25px;
+
+  margin-top: 40px;
+  padding: 40px 30px 60px 30px;
+
+  border-radius: 30px;
+  min-height: 350px;
+  position: relative;
+}
+
+/* FLOR */
+.flor {
+  text-align: center;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* las planta abajo */
+  margin-block-end: 80px;
+}
+
+.flor:hover {
+  transform: scale(1.08);
+}
+
+/* imagen */
+.flor img {
+  width: 90px;
+  margin-top: 10px;
+}
+
+/* cartelito */
+.info {
+  background: rgba(255, 255, 255, 0);
+  border-radius: 12px;
+  padding: 8px;
+  font-size: 13px;
+  margin-bottom: 6px;
+  width: 100%;
+  min-height: 60px;
+}
+
+.fecha {
+  font-size: 11px;
+  color: #a0668a;
+}
+
+/* botón nota */
+.btn-nota{
+  margin-top:6px;
+  padding:5px 12px;
+  border:none;
+  border-radius:15px;
+  background:#e8638c;
+  color:white;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.btn-nota:hover{
+  background:#f586a7;
+}
+
+/* boton volver */
+.volver {
+  display: block;
+  text-align: center;
+  margin: 25px auto;
+  background: #e8638c;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.volver a {
+  text-decoration: none;
+  color: white;
+}
+
+.volver:hover {
+  background: #f586a7;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(3px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-contenido {
+  background: rgba(255,255,255,0.9);
+  padding: 20px;
+  border-radius: 18px;
+  width: 260px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  animation: aparecer 0.25s ease;
+  position: relative;
+}
+
+@keyframes aparecer {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-contenido h2 {
+  margin-top: 0;
+  color: #c04b6f;
+}
+
+#textoNota {
+  margin-top: 15px;
+  font-size: 15px;
+  line-height: 1.4;
+  max-height: 200px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.cerrar {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+.cerrar:hover{
+  color: #f586a7;
+
+
+}
+.logout{
+  text-decoration: none;
+  color: #a0668a;
+  background: transparent;
+  border-radius: 0%;
+  border-color: transparent;
+  cursor: pointer;
+    text-decoration: none;
+  color: #a0668a;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.logout:hover {
+  color: #e8638c;
+}
+</style>
+</head>
+
+<body>
+
+{% include 'navbar.html' %}
+
+
+<main class="main">
+  <div class="titulo">
+    <h1>Mi Jardín</h1>
+    <p>Acá podés ver todas las flores que plantaste hoy</p>
+  </div>
+
+{% if emociones %}
+<div class="jardin">
+  {% for item in emociones %}
+  <div class="flor">
+    <div class="info">
+      <strong>{{ item.emocion }}</strong><br>
+      <span class="fecha">{{ item.fecha }}</span><br>
+
+      {% if item.nota %}
+        <button class="btn-nota" onclick="mostrarNota(`{{ item.nota }}`)">Ver nota</button>
+      {% else %}
+        <span style="font-size:12px;color:#999;">Sin nota</span>
+      {% endif %}
+    </div>
+
+    <img src="{{ item.imagen }}" alt="flor">
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p style="text-align:center;">Todavía no plantaste flores 🌱</p>
+{% endif %}
+
+</main>
+
+<!-- MODAL -->
+<div id="modalNota" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarNota()">✖</span>
+    <h3>📝 Nota del día</h3>
+    <p id="textoNota"></p>
+  </div>
+</div>
+
+<script>
+function mostrarNota(texto){
+  document.getElementById("textoNota").textContent = texto;
+  document.getElementById("modalNota").style.display = "flex";
+}
+
+function cerrarNota(){
+  document.getElementById("modalNota").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

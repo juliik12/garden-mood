@@ -1,0 +1,12 @@
+<!-- templates/navbar.html -->
+<nav>
+  <div class="nav-titulo">Jardín de emociones</div>
+  <ul class="nav-sectores">
+    <li><a class="{% if request.path == '/' %}active{% endif %}" href="/">Mi día</a></li>
+    <li><a class="{% if '/jardin' in request.path %}active{% endif %}" href="/jardin/{{ fecha }}">Jardín</a></li>
+    <li><a class="{% if request.path == '/calendario' %}active{% endif %}" href="/calendario">Calendario</a></li>
+    <form method="POST" action="/logout" style="margin-left:auto;">
+      <li><button class="logout" type="submit">Cerrar sesión</button></li>
+    </form>
+  </ul>
+</nav>
