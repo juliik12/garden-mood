@@ -1,483 +1,579 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jardin emotivo a</title>
-    <link rel="stylesheet" href="/styles/style.css">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.ico') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jardin emotivo a</title>
+
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<style>
-* {
-  box-sizing: border-box;
-}
 
-html {
-  overflow-y: scroll;
-}
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow-y: scroll; }
 
-body {
-  font-family: 'Quicksand', sans-serif;
-  background-color: #fff5f8;
-  color: #5a2d45;
-  margin: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
-  background-image:
-    radial-gradient(ellipse at 15% 0%, rgba(249,184,204,0.35) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 100%, rgba(232,180,216,0.30) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 50%, rgba(255,212,194,0.15) 0%, transparent 70%);
-   transition: background-color 0.8s cubic-bezier(.4,0,.2,1);
-}
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #fff5f8;
+      color: #5a2d45;
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(ellipse at 15% 0%, rgba(249,184,204,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 100%, rgba(232,180,216,0.30) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(255,212,194,0.15) 0%, transparent 70%);
+      transition: background-color 0.8s cubic-bezier(.4,0,.2,1);
+    }
+
     .main {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
     }
+
     .btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-nav {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.2rem 1.5rem;
-  background: transparent;
-   border-bottom: 1.5px solid rgba(249,184,204,0.5);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-sizing: border-box;
-}
-
-.nav-titulo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #f59bb6;
-  letter-spacing: 0.02em;
-}
-
-.nav-sectores {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-sectores a {
-  text-decoration: none;
-  color: #a0668a;
-  font-size: 0.88rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-
-.nav-sectores a:hover {
-  color: #e8638c;
-}
-
-    .titulo{
-        
-        text-align: center;
-        
-        font-size: 20px;
-
+      background: #ccc;
+      cursor: not-allowed;
     }
-    .titulo h1{
-        font-family: 'Playfair Display', serif;
-        color: #e8638c;
+
+    nav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      background: transparent;
+      border-bottom: 1.5px solid rgba(249,184,204,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-sizing: border-box;
     }
-    .titulo p{
-        font-size: 18px; 
-        color: #a0668a;
+
+    .nav-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #f59bb6;
+      letter-spacing: 0.02em;
     }
+
+    .nav-sectores {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-sectores a {
+      text-decoration: none;
+      color: #a0668a;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-sectores a:hover { color: #e8638c; }
+
+    .titulo { text-align: center; font-size: 20px; }
+    .titulo h1 { font-family: 'Playfair Display', serif; color: #e8638c; }
+    .titulo p { font-size: 18px; color: #a0668a; }
+
+    /* ====== Racha + límite + progress ====== */
+    .streak {
+      padding: 10px 14px;
+      border-radius: 14px;
+      display: inline-block;
+      font-weight: 700;
+      margin: 12px auto 6px;
+    }
+    .streak-on {
+      background: rgba(255, 190, 210, 0.35);
+      color: #5a2d45;
+      border: 1px solid rgba(255, 190, 210, 0.55);
+    }
+    .streak-off {
+      background: rgba(0,0,0,0.05);
+      color: rgba(90,45,69,0.55);
+      border: 1px solid rgba(0,0,0,0.08);
+      filter: grayscale(1);
+    }
+    .limit {
+      text-align: center;
+      margin: 6px 0 4px;
+      font-weight: 700;
+      color: #a0668a;
+    }
+    .limit .mini {
+      opacity: 0.75;
+      margin-left: 6px;
+      font-weight: 600;
+    }
+    .progress-wrap {
+      width: 100%;
+      height: 10px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0 18px;
+    }
+    .progress-bar {
+      height: 100%;
+      border-radius: 999px;
+      background: rgba(255, 170, 200, 0.9);
+      width: 0%;
+    }
+
+    /* ====== Bloque de nota ====== */
     .notas {
-        background: rgb(247, 242, 230);
-        border-radius: 20px;
-        padding: 1.8rem;
-        box-shadow: 0 2px 11px  rgba(214,61,114,0.15);
-        margin-bottom: 1.5rem;
+      background: rgb(247, 242, 230);
+      border-radius: 20px;
+      padding: 1.8rem;
+      box-shadow: 0 2px 11px rgba(214,61,114,0.15);
+      margin-bottom: 1.5rem;
     }
-    .notas label{
-        display: block;
-        font-family: 'Playfair Display', serif;
-        font-size: 1.1rem;
-        color: #a0668a ;
-        margin-bottom: 0.8rem;
+    .notas label {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #a0668a;
+      margin-bottom: 0.8rem;
     }
-    .notas textarea{
-        width: 100%;
-        border: 1.5px solid #ffe8f0;
-        border-radius: 12px;
-        padding: 1rem;
+    .notas textarea {
+      width: 100%;
+      border: 1.5px solid #ffe8f0;
+      border-radius: 12px;
+      padding: 1rem;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.95rem;
+      color: #5a2d45;
+      resize: vertical;
+      min-height: 90px;
+      background: #fff5f8;
+      transition: border-color 0.2s;
+      outline: none;
+    }
 
-        font-family: 'Quicksand', sans-serif;
-        font-size: 0.95rem;
-        color: #5a2d45;
-        resize: vertical;
-        min-height: 90px;
-        background: #fff5f8;
-        transition: border-color 0.2s;
-        outline: none;
-
-    }
+    /* ====== Emociones ====== */
     .emociones {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin: 2rem 0;
-}
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+    }
 
-.emocion {
-  background: white;
-  border-radius: 16px;
-  padding: 1rem;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(214,61,114,0.15);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
+    .emocion {
+      background: white;
+      border-radius: 16px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(214,61,114,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-.emocion:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(214,61,114,0.25);
-}
+    .emocion:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(214,61,114,0.25);
+    }
 
-.emocion input {
-  display: none;
-}
+    .emocion input { display: none; }
+    .emocion span { font-size: 2rem; }
 
-.emocion span {
-  font-size: 2rem;
-}
+    .emocion p {
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      color: #a0668a;
+      font-weight: bold;
+    }
 
-.emocion p {
-  margin-top: 0.3rem;
-  font-size: 0.8rem;
-  color: #a0668a;
-  font-weight: bold;
-}
+    .emocion input:checked + span { transform: scale(1.2); }
 
-.emocion input:checked + span {
-  transform: scale(1.2);
-}
+    .btn, .cerrar {
+      margin-top: 1rem;
+      padding: 0.7rem 2rem;
+      border-radius: 30px;
+      border: none;
+      background: #e8638c;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn:hover, .cerrar:hover { background-color: #f586a7; }
 
-.btn {
-  margin-top: 1rem;
-  padding: 0.7rem 2rem;
-  border-radius: 30px;
-  border: none;
-  background: #e8638c;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-.btn:hover{
-    background-color: #f586a7;
-}
-.cerrar {
-  margin-top: 1rem;
-  padding: 0.7rem 2rem;
-  border-radius: 30px;
-  border: none;
-  background: #e8638c;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-.cerrar:hover{
-    background-color: #f586a7;
-}
-li a.active {
-  
-  color: #e8638c;
-}
-.emocion.selected {
-  box-shadow: 0 6px 15px rgba(214,61,114,0.25);
-  transition: border 0.2s, box-shadow 0.2s;
-}
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(3px);
-}
+    li a.active { color: #e8638c; }
 
-.modal-contenido {
-  background: #fff5f8;
-  padding: 2rem;
-  border-radius: 20px;
-  width: 300px;
-  text-align: center;
-  margin: 15% auto;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-  animation: aparecer 0.3s ease;
-}
-.logout{
-  text-decoration: none;
-  color: #a0668a;
-  background: transparent;
-  border-radius: 0%;
-  border-color: transparent;
-  cursor: pointer;
-    text-decoration: none;
-  color: #a0668a;
-  font-size: 0.88rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-.logout:hover {
-  color: #e8638c;
-}
+    .emocion.selected {
+      box-shadow: 0 6px 15px rgba(214,61,114,0.25);
+      transition: border 0.2s, box-shadow 0.2s;
+    }
 
-@keyframes aparecer {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-    </style>
+    /* ====== Modal ====== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-contenido {
+      background: #fff5f8;
+      padding: 2rem;
+      border-radius: 20px;
+      width: 300px;
+      text-align: center;
+      margin: 15% auto;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      animation: aparecer 0.3s ease;
+    }
+
+    .logout {
+      text-decoration: none;
+      color: #a0668a;
+      background: transparent;
+      border-radius: 0%;
+      border-color: transparent;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .logout:hover { color: #e8638c; }
+
+    @keyframes aparecer {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* ====== Toast (el toque "ufff") ====== */
+    .toast {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 18px;
+      z-index: 2000;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(249,184,204,0.65);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      padding: 12px 14px;
+      border-radius: 16px;
+      min-width: 260px;
+      max-width: 92vw;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      animation: toastIn 0.25s ease;
+      color: #5a2d45;
+      font-weight: 700;
+    }
+    .toast .mini {
+      font-weight: 600;
+      opacity: 0.75;
+      font-size: 0.9rem;
+      margin-top: 2px;
+    }
+    .toast .emoji {
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+    .toast .content { display: flex; flex-direction: column; }
+    @keyframes toastIn {
+      from { transform: translateX(-50%) translateY(10px); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+  </style>
 </head>
+
 <body>
-{% include 'navbar.html' %}
-    <main class="main">
+  {% include 'navbar.html' %}
 
-        <div class="titulo">
-            <h1>¿Como te sentis hoy?</h1>
-            <p id="sub">Elige tu emocion y planta una flor en tu jardin</p>
-        </div>
-{% if cantidad_hoy >= 5 %}
-  <div style="background:#ffe0e8; padding:15px; border-radius:12px; text-align:center; color:#a9446a; margin-bottom:15px;">
-    🌱 Ya plantaste 5 flores hoy.  
-    Volvé mañana para seguir cuidando tu jardín 💖
-  </div>
-{% endif %}
+  <main class="main">
+    <div class="titulo">
+      <h1>¿Como te sentis hoy?</h1>
+      <p id="sub">Elige tu emocion y planta una flor en tu jardin</p>
 
-<form method="POST" id="submit">
-  <div class="emociones">
+      <!-- ✅ Racha + estado (gris si hoy no cumpliste) -->
+      <div class="streak {{ 'streak-on' if hoy_cumplido else 'streak-off' }}">
+        🔥 Racha: <b>{{ racha }}</b> días
+      </div>
 
-    <label class="emocion">
-      <input type="radio" name="mood" value="Girasol" required
-             data-color="#EAFA7A"
-             data-img="{{ url_for('static', filename='images/feliz.png') }}">
-      <span>😄</span>
-      <p>Feliz</p>
-    </label>
+      <!-- ✅ Límite con bonus -->
+      <div class="limit">
+        🌸 Hoy podés plantar: <b>{{ limite_diario }}</b> flores
+        <span class="mini">({{ cantidad_hoy }}/{{ limite_diario }})</span>
+      </div>
 
-    <label class="emocion">
-      <input type="radio" name="mood" value="Rosa Azul"
-             data-color="#9CBEFF"
-             data-img="{{ url_for('static', filename='images/tristeza.png') }}">
-      <span>😢</span>
-      <p>Tristeza</p>
-    </label>
+      <!-- ✅ Barra de progreso -->
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
 
-    <label class="emocion">
-      <input type="radio" name="mood" value="Lirio Morado"
-             data-color="#6F07C6"
-             data-img="{{ url_for('static', filename='images/angustia.png') }}">
-      <span>😟</span>
-      <p>Angustiad@</p>
-    </label>
+    {% if cantidad_hoy >= limite_diario %}
+      <div style="background:#ffe0e8; padding:15px; border-radius:12px; text-align:center; color:#a9446a; margin-bottom:15px;">
+        🌱 Ya plantaste {{ limite_diario }} flores hoy.
+        Volvé mañana para seguir cuidando tu jardín 💖
+      </div>
+    {% endif %}
 
-    <label class="emocion">
-      <input type="radio" name="mood" value="Geranio Rojo"
-             data-color="#FF6E6E"
-             data-img="{{ url_for('static', filename='images/enojo.png') }}">
-      <span>😡</span>
-      <p>Enojad@</p>
-    </label>
+    <form method="POST" id="submit">
+      <div class="emociones">
 
-    <label class="emocion">
-      <input type="radio" name="mood" value="Gentian"
-             data-color="#455768"
-             data-img="{{ url_for('static', filename='images/frustracion.png') }}">
-      <span>😣</span>
-      <p>Frustrad@</p>
-    </label>
+        <label class="emocion">
+          <input type="radio" name="mood" value="Girasol" required
+                 data-color="#EAFA7A"
+                 data-img="{{ url_for('static', filename='images/feliz.png') }}">
+          <span>😄</span>
+          <p>Feliz</p>
+        </label>
 
-    <label class="emocion">
-      <input type="radio" name="mood" value="Lirio Azul"
-             data-color="#806AF1"
-             data-img="{{ url_for('static', filename='images/verguenza.png') }}">
-      <span>😳</span>
-      <p>Vergüenza</p>
-    </label>
+        <label class="emocion">
+          <input type="radio" name="mood" value="Rosa Azul"
+                 data-color="#9CBEFF"
+                 data-img="{{ url_for('static', filename='images/tristeza.png') }}">
+          <span>😢</span>
+          <p>Tristeza</p>
+        </label>
 
-    <label class="emocion">
-      <input type="radio" name="mood" value="Rafflesia Arnoldii"
-             data-color="#E06C6C"
-             data-img="{{ url_for('static', filename='images/asco.png') }}">
-      <span>🤢</span>
-      <p>Asco</p>
-    </label>
+        <label class="emocion">
+          <input type="radio" name="mood" value="Lirio Morado"
+                 data-color="#6F07C6"
+                 data-img="{{ url_for('static', filename='images/angustia.png') }}">
+          <span>😟</span>
+          <p>Angustiad@</p>
+        </label>
 
-    <label class="emocion">
-      <input type="radio" name="mood" value="Amapola Blanca"
-             data-color="#BDD9EC"
-             data-img="{{ url_for('static', filename='images/miedo.png') }}">
-      <span>😨</span>
-      <p>Miedo</p>
-    </label>
+        <label class="emocion">
+          <input type="radio" name="mood" value="Geranio Rojo"
+                 data-color="#FF6E6E"
+                 data-img="{{ url_for('static', filename='images/enojo.png') }}">
+          <span>😡</span>
+          <p>Enojad@</p>
+        </label>
 
-  </div>
-  <input type="hidden" id="imagenSeleccionada" name="imagen">
+        <label class="emocion">
+          <input type="radio" name="mood" value="Gentian"
+                 data-color="#455768"
+                 data-img="{{ url_for('static', filename='images/frustracion.png') }}">
+          <span>😣</span>
+          <p>Frustrad@</p>
+        </label>
 
-  <div class="notas">
-    <label for="nota">Una nota para describir tu día (opcional)</label>
-    <textarea id="nota" name="nota" maxlength="200"
-              placeholder="¿Qué sucedió hoy que querés recordar?"></textarea>
-  </div>
-<button type="submit" class="btn" {% if cantidad_hoy >= 5 %}disabled{% endif %}>
-  Plantar flor
-</button>
-</form>
+        <label class="emocion">
+          <input type="radio" name="mood" value="Lirio Azul"
+                 data-color="#806AF1"
+                 data-img="{{ url_for('static', filename='images/verguenza.png') }}">
+          <span>😳</span>
+          <p>Vergüenza</p>
+        </label>
 
+        <label class="emocion">
+          <input type="radio" name="mood" value="Rafflesia Arnoldii"
+                 data-color="#E06C6C"
+                 data-img="{{ url_for('static', filename='images/asco.png') }}">
+          <span>🤢</span>
+          <p>Asco</p>
+        </label>
 
-<div id="modal" class="modal">
-  <div class="modal-contenido">
-    <h2>🌸 Flor plantada</h2>
+        <label class="emocion">
+          <input type="radio" name="mood" value="Amapola Blanca"
+                 data-color="#BDD9EC"
+                 data-img="{{ url_for('static', filename='images/miedo.png') }}">
+          <span>😨</span>
+          <p>Miedo</p>
+        </label>
 
-    <img id="imgModal" src="" alt="Flor" style="width:120px; margin:10px 0;">
+      </div>
 
-    <p id="textoModal"></p>
+      <input type="hidden" id="imagenSeleccionada" name="imagen">
 
-    <button class="cerrar" id="cerrarBtn">Aceptar</button>
-  </div>
-</div>
+      <div class="notas">
+        <label for="nota">Una nota para describir tu día (opcional)</label>
+        <textarea id="nota" name="nota" maxlength="200"
+                  placeholder="¿Qué sucedió hoy que querés recordar?"></textarea>
+      </div>
 
+      <button type="submit" class="btn" {% if cantidad_hoy >= limite_diario %}disabled{% endif %}>
+        Plantar flor
+      </button>
+    </form>
 
-<script>
-  
-const cantidadHoy = {{ cantidad_hoy }};
+    <div id="modal" class="modal">
+      <div class="modal-contenido">
+        <h2>🌸 Flor plantada</h2>
+        <img id="imgModal" src="" alt="Flor" style="width:120px; margin:10px 0;">
+        <p id="textoModal"></p>
+        <button class="cerrar" id="cerrarBtn">Aceptar</button>
+      </div>
+    </div>
 
-const inputs = document.querySelectorAll("input[name='mood']");
-const emociones = document.querySelectorAll(".emocion");
-const nav = document.querySelector("nav");
-const textos = document.querySelectorAll("h1, .nav-titulo, .nav-sectores a");
-const parrafo = document.getElementById("sub");
-const inputImagen = document.getElementById("imagenSeleccionada");
+    <!-- ✅ Toast de bonus (toque "ufff") -->
+    <div id="toastBonus" class="toast">
+      <div class="emoji">✨</div>
+      <div class="content">
+        <div id="toastTitle">Bonus desbloqueado</div>
+        <div class="mini" id="toastSub">+1 flor hoy</div>
+      </div>
+    </div>
 
-// Guardamos colores originales
-const coloresOriginales = new Map();
-textos.forEach(el => coloresOriginales.set(el, el.style.color));
-const colorParrafoOriginal = parrafo.style.color || "#a0668a";
+  </main>
 
-function esColorOscuro(hex) {
-  const r = parseInt(hex.substr(1,2),16);
-  const g = parseInt(hex.substr(3,2),16);
-  const b = parseInt(hex.substr(5,2),16);
-  const brillo = (r*299 + g*587 + b*114) / 1000;
-  return brillo < 150;
-}
+  <script>
+    const cantidadHoy = {{ cantidad_hoy }};
+    const limiteDiario = {{ limite_diario }};
+    const bonus = {{ limite_diario - 5 }};
+    const hoyCumplido = {{ 'true' if hoy_cumplido else 'false' }};
 
-function volverANormalidad() {
-  document.body.style.backgroundColor = "#fff5f8";
-  nav.style.borderBottom = "1.5px solid rgba(249,184,204,0.5)";
+    // Progress bar
+    const progressBar = document.getElementById("progressBar");
+    const pct = Math.max(0, Math.min(100, Math.round((cantidadHoy / Math.max(1, limiteDiario)) * 100)));
+    progressBar.style.width = pct + "%";
 
-  textos.forEach(el => {
-    el.style.color = "";
-  });
+    // Toast bonus (solo si hay bonus y hoy no está lleno)
+    const toast = document.getElementById("toastBonus");
+    const toastTitle = document.getElementById("toastTitle");
+    const toastSub = document.getElementById("toastSub");
 
-  parrafo.style.color = "#a0668a";
+    function mostrarToastBonus() {
+      if (bonus <= 0) return;
 
-  emociones.forEach(e => {
-    e.classList.remove("selected");
-    e.style.border = "";
-  });
+      // Mensaje según bonus
+      toastTitle.textContent = "✨ Bonus desbloqueado";
+      toastSub.textContent = `+${bonus} flor${bonus === 1 ? "" : "es"} por racha`;
 
-  inputImagen.value = "";
-}
-
-let ultimaSeleccion = null;
-
-inputs.forEach(input => {
-  input.addEventListener("click", () => {
-
-    if (ultimaSeleccion === input) {
-      input.checked = false;
-      ultimaSeleccion = null;
-      volverANormalidad();
-      return;
+      toast.style.display = "flex";
+      setTimeout(() => { toast.style.display = "none"; }, 4200);
     }
 
-    ultimaSeleccion = input;
-    const color = input.dataset.color;
-
-    document.body.style.backgroundColor = color;
-    nav.style.borderBottom = "transparent";
-
-    if (esColorOscuro(color)) {
-      textos.forEach(t => t.style.color = "#ffffff");
-      parrafo.style.color = "#ffffff";
-    } else {
-      textos.forEach(t => t.style.color = "#5a2d45");
-      parrafo.style.color = "#5a2d45";
+    // Mostrar toast solo si:
+    // - tenés bonus
+    // - hoy todavía no llegaste al límite
+    // - y la racha está "activa" o "en pausa" da igual (lo mostramos igual para motivar)
+    if (bonus > 0 && cantidadHoy < limiteDiario) {
+      // un mini delay para que se sienta smooth
+      setTimeout(mostrarToastBonus, 450);
     }
 
-    emociones.forEach(e => {
-      e.classList.remove("selected");
-      e.style.border = "";
+    const inputs = document.querySelectorAll("input[name='mood']");
+    const emociones = document.querySelectorAll(".emocion");
+    const nav = document.querySelector("nav");
+    const textos = document.querySelectorAll("h1, .nav-titulo, .nav-sectores a");
+    const parrafo = document.getElementById("sub");
+    const inputImagen = document.getElementById("imagenSeleccionada");
+
+    function esColorOscuro(hex) {
+      const r = parseInt(hex.substr(1,2),16);
+      const g = parseInt(hex.substr(3,2),16);
+      const b = parseInt(hex.substr(5,2),16);
+      const brillo = (r*299 + g*587 + b*114) / 1000;
+      return brillo < 150;
+    }
+
+    function volverANormalidad() {
+      document.body.style.backgroundColor = "#fff5f8";
+      nav.style.borderBottom = "1.5px solid rgba(249,184,204,0.5)";
+
+      textos.forEach(el => { el.style.color = ""; });
+      parrafo.style.color = "#a0668a";
+
+      emociones.forEach(e => {
+        e.classList.remove("selected");
+        e.style.border = "";
+      });
+
+      inputImagen.value = "";
+    }
+
+    let ultimaSeleccion = null;
+
+    inputs.forEach(input => {
+      input.addEventListener("click", () => {
+
+        if (ultimaSeleccion === input) {
+          input.checked = false;
+          ultimaSeleccion = null;
+          volverANormalidad();
+          return;
+        }
+
+        ultimaSeleccion = input;
+        const color = input.dataset.color;
+
+        document.body.style.backgroundColor = color;
+        nav.style.borderBottom = "transparent";
+
+        if (esColorOscuro(color)) {
+          textos.forEach(t => t.style.color = "#ffffff");
+          parrafo.style.color = "#ffffff";
+        } else {
+          textos.forEach(t => t.style.color = "#5a2d45");
+          parrafo.style.color = "#5a2d45";
+        }
+
+        emociones.forEach(e => {
+          e.classList.remove("selected");
+          e.style.border = "";
+        });
+
+        const selected = input.closest(".emocion");
+        selected.classList.add("selected");
+        selected.style.border = `3px solid ${color}`;
+
+        inputImagen.value = input.dataset.img;
+      });
     });
 
-    const selected = input.closest(".emocion");
-    selected.classList.add("selected");
-    selected.style.border = `3px solid ${color}`;
+    // Modal
+    const form = document.getElementById("submit");
+    const modal = document.getElementById("modal");
+    const cerrarBtn = document.getElementById("cerrarBtn");
+    const textoModal = document.getElementById("textoModal");
+    const imgModal = document.getElementById("imgModal");
 
-    inputImagen.value = input.dataset.img;
-  });
-});
+    form.addEventListener("submit", function(e){
+      if (cantidadHoy >= limiteDiario) {
+        alert(`🌸 Ya plantaste ${limiteDiario} flores hoy. Volvé mañana.`);
+        e.preventDefault();
+        return;
+      }
 
-// Modal
-const form = document.getElementById("submit");
-const modal = document.getElementById("modal");
-const cerrarBtn = document.getElementById("cerrarBtn");
-const textoModal = document.getElementById("textoModal");
-const imgModal = document.getElementById("imgModal");
+      const inputSeleccionado = document.querySelector("input[name='mood']:checked");
+      if (!inputSeleccionado) {
+        alert("Selecciona una emoción antes de plantar una flor");
+        e.preventDefault();
+        return;
+      }
 
-form.addEventListener("submit", function(e){
-  if(cantidadHoy >= 5){
-    alert("🌸 Ya plantaste 5 flores hoy. Volvé mañana.");
-    e.preventDefault();
-    return;
-  }
+      
+      e.preventDefault();
+      // Mostrar modal
+      const emocion = inputSeleccionado.value;
+      const imagen = inputSeleccionado.dataset.img;
 
-  const inputSeleccionado = document.querySelector("input[name='mood']:checked");
-  if(!inputSeleccionado){
-    alert("Selecciona una emoción antes de plantar una flor");
-    e.preventDefault();
-    return;
-  }
+      textoModal.textContent = "Hoy plantaste: " + emocion;
+      imgModal.src = imagen;
 
-  // Evitamos que se envíe inmediatamente
-  e.preventDefault();
+      modal.style.display = "block";
+    });
 
-  // Mostramos el modal
-  const emocion = inputSeleccionado.value;
-  const imagen = inputSeleccionado.dataset.img;
-
-  textoModal.textContent = "Hoy plantaste: " + emocion;
-  imgModal.src = imagen;
-
-  modal.style.display = "block";
-});
-
-// Cerrar modal y enviar formulario
-cerrarBtn.addEventListener("click", function(){
-  modal.style.display = "none";
-  // Ahora sí enviamos el formulario
-  form.submit();
-});
-</script>
+    // Cerrar modal y enviar formulario
+    cerrarBtn.addEventListener("click", function(){
+      modal.style.display = "none";
+      form.submit();
+    });
+  </script>
+</body>
+</html>
