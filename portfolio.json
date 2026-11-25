@@ -1,1 +1,37 @@
-
+{
+  "schema_version": 1,
+  "portfolio": {
+    "id": "jardin-de-emociones",
+    "visible": true,
+    "category": "software",
+    "status": "archived",
+    "created_at": "2026-02-24",
+    "featured": false,
+    "default_locale": "es",
+    "main_image": {
+      "reference": "portada.png"
+    },
+    "gallery": [
+      {
+        "reference": "Sin titulo.png"
+      }
+    ],
+    "technologies": [
+      "python",
+      "html"
+    ],
+    "github_url": "https://github.com/juliik12/garden-mood/tree/main",
+    "demo_url": "https://pythonanywhere/julirexs12",
+    "case_study": null
+  },
+  "translations": {
+    "es": {
+      "title": "Jardin de emociones",
+      "description": "Aplicación web emocional construida con Flask para registrar cómo te sentís cada día, guardar una nota personal y transformar ese historial en un jardín visual.\n\nLa idea del proyecto es combinar seguimiento emocional, una experiencia cálida y una representación visual simple: cada emoción registrada se convierte en una flor dentro del jardín del usuario."
+    },
+    "en": {
+      "title": "Garden mood",
+      "description": "An emotional web application built with Flask that lets you log how you feel each day, add a personal note, and transform that history into a visual garden.\n\nThe project concept combines mood tracking, a warm user experience, and a simple visual representation: every logged emotion becomes a flower in the user’s garden."
+    }
+  }
+}
